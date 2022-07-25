@@ -20,23 +20,17 @@ pipeline {
                         params.executeTest
                     }
                 }
-                script{
-                    gv.Build_App()
-                }
+                echo 'Building the app'
             }
         }
         stage('Test') { 
             steps {
-                script{
-                    gv.Test_App()
-                } 
+                echo "Testing the app version ${params.VERSION}"
             }
         }
         stage('Deploy') { 
             steps {
-                script{
-                    gv.Deploy_App()
-                } 
+                echo "deploying the app version ${params.VERSION}"
             }
         }
     }
