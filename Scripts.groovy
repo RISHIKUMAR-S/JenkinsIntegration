@@ -3,10 +3,10 @@ def Build_App(){
 }
 
 def Test_App(){
-    echo "Testing the app version ${param.VERSION}"
+    echo "Testing the app version ${params.VERSION}"
 }
 
 def Deploy_App(){
-    echo "deploying the app version ${param.VERSION}"
+    echo "deploying the app version ${params.VERSION}"
 }
 return this
