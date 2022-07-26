@@ -7,11 +7,13 @@ pipeline {
         string(name: 'user', defaultValue: 'John', description: 'A user that triggers the pipeline')
     } 
     stages {
-        steps {
+        stage('init') { 
+            steps {
                 script{
-                    gv.Build_App()
+                    gv = load "Scripts.groovy"
                 }
             }
+        }
         stage('Build') { 
             steps {
                 echo 'Building the app'
