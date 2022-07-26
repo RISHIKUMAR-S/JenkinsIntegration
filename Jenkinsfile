@@ -14,16 +14,17 @@ pipeline {
         stage('Test') { 
             when {
                 expression {
+                    echo "condition checking"
                     return params.executeTest
                 }
             }
             steps {
-                echo "Testing the app version"
+                echo "Testing the app version ${params.VERSION}"
             }
         }
         stage('Deploy') { 
             steps {
-                echo "deploying the app version"
+                echo "deploying the app version ${params.VERSION}"
             }
         }
     }
