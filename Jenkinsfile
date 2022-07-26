@@ -41,7 +41,7 @@ pipeline {
     }
     post{
         success {
-            echo "hooray ${params.name}, it succedded"
+            echo "hooray ${params.user}, it succedded"
         }
     }
 }
