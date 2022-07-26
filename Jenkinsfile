@@ -1,3 +1,4 @@
+def gv
 pipeline {
     agent any
     parameters {
@@ -6,6 +7,11 @@ pipeline {
         string(name: 'user', defaultValue: 'John', description: 'A user that triggers the pipeline')
     } 
     stages {
+        steps {
+                script{
+                    gv.Build_App()
+                }
+            }
         stage('Build') { 
             steps {
                 echo 'Building the app'
@@ -24,13 +30,16 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
+                script {
+                    gv.Deploy_App()
+                }
                 echo "deploying the app version ${params.VERSION}"
             }
         }
     }
     post{
         success {
-            echo 'it succedded'
+            echo "hooray ${params.name}, it succedded"
         }
     }
 }
