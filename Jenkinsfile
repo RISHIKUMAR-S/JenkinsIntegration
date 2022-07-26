@@ -8,12 +8,12 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                echo "Testing the app version ${params.VERSION}"
+                echo "Testing the app version"
             }
         }
         stage('Deploy') { 
             steps {
-                echo "deploying the app version ${params.VERSION}"
+                echo "deploying the app version"
             }
         }
     }
