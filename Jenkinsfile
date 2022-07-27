@@ -15,7 +15,9 @@ pipeline {
             }
         }
         stage('Test') {
-            agent any
+            agent {
+                label 'windows'
+            }
             steps {
                 echo "Testing the app..."
             }
