@@ -8,16 +8,13 @@ pipeline {
             }
         }
         stage('Build') { 
-            agent any
+            agent { docker { image 'python:3.10.1-alpine' } }
             steps {
                 git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
-                bat 'python list_dict.py'
+                sh 'python list_dict.py'
             }
         }
         stage('Test') {
-            agent {
-                label 'windows'
-            }
             steps {
                 echo "Testing the app..."
             }
