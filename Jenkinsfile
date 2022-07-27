@@ -1,47 +1,27 @@
 def gv
 pipeline {
     agent any
-    parameters {
-        choice(name: 'VERSION', choices: ['1.1','1.2'], description: 'Version of the build')
-        booleanParam(name: 'executeTest', defaultValue: true, description: 'choice to test the build or not')
-        string(name: 'user', defaultValue: 'John', description: 'A user that triggers the pipeline')
-    } 
     stages {
-        stage('init') { 
+        stage('checkout') { 
             steps {
-                script{
-                    gv = load "Scripts.groovy"
-                }
+                checkout([$class: 'GitSCM', branches: [[name: '*/python']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git']]])
             }
         }
         stage('Build') { 
             steps {
-                echo 'Building the app'
+                git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
+                bat 'python list_dict.py'
             }
         }
-        stage('Test') { 
-            when {
-                expression {
-                    echo "condition checking"
-                    return params.executeTest
-                }
-            }
+        stage('Test') {
             steps {
-                echo "Testing the app version ${params.VERSION}"
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                script {
-                    gv.Deploy_App()
-                }
-                echo "deploying the app version ${params.VERSION}"
+                echo "Testing the app..."
             }
         }
     }
     post{
         success {
-            echo "hooray ${params.user}, it succedded"
+            echo "hooray , it succedded"
         }
     }
 }
