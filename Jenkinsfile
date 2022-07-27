@@ -8,9 +8,7 @@ pipeline {
             }
         }
         stage('Build') { 
-            agent {
-                label 'windows'
-            }
+            agent any
             steps {
                 git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
                 bat 'python list_dict.py'
