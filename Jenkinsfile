@@ -4,14 +4,15 @@ pipeline {
         stage('checkout') { 
             agent any
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/python']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git']]])
+                checkout scm
+                //checkout([$class: 'GitSCM', branches: [[name: '*/python']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git']]])
             }
         }
         stage('Build') { 
             //agent { docker { image 'python:3.10.1-alpine' } }
             agent any
             steps {
-                git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
+                //git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
                 sh 'sh test.sh'
             }
         }
