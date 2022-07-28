@@ -12,7 +12,7 @@ pipeline {
             agent any
             steps {
                 git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
-                sh 'python list_dict.py'
+                sh 'test.sh'
             }
         }
         stage('Test') {
