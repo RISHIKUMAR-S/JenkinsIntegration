@@ -14,7 +14,7 @@ pipeline {
             steps {
                 //git branch: 'python', url: 'https://github.com/RISHIKUMAR-S/JenkinsIntegration.git'
                 //sh 'sh test.sh'
-                sh 'apt install python3'
+                sh 'sudo apt install python3'
                 sh 'python list_dict.py'
             }
         }
